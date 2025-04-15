@@ -4,8 +4,8 @@
 ## Creación de la API
 
 *** COMANDO DE CREACION ***
-oc new-app --name=wordsearch-api https://github.com/fernando0069/wordsearch.git --context-dir=api/ -l app=wordsearch, component=api
-
+oc new-app --name=wordsearch-api https://github.com/fernando0069/wordsearch.git --context-dir=api/ -l app=wordsearch,component=api
+oc new-build --name=wordsearch-api --dockerfile=$(cat Dockerfile)
 
 ## Estructura de archivos
 ```
