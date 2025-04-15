@@ -7,6 +7,16 @@
 oc new-app --name=wordsearch-api https://github.com/fernando0069/wordsearch.git --context-dir=api/ -l app=wordsearch,component=api
 oc new-build --name=wordsearch-api --dockerfile=$(cat Dockerfile)
 
+Creacion de un buildconfig ubi9/opekdk-21
+from:
+  registry.access.redhat.com/ubi9/openjdk-21
+to:
+  XXXX
+secret
+deploymet
+sevice
+route
+
 ## Estructura de archivos
 ```
 word-search-api

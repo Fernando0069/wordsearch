@@ -17,4 +17,4 @@ PENDIENTE:
         Imagen
         Configuracion de la DB (ejecutar la creacion de tablas "wordsearch.sql").
     API:
-        
+        copiar el buildconfig
