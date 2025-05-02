@@ -5,7 +5,7 @@ metadata:
   namespace: fernando0069-dev
   labels:
     app: wordsearch
-    component: api
+    component: api-imagestream
 spec:
   lookupPolicy:
     local: false
@@ -17,7 +17,7 @@ metadata:
   namespace: fernando0069-dev
   labels:
     app: wordsearch
-    component: api
+    component: api-buildconfig
 spec:
   output:
     to:
@@ -54,7 +54,7 @@ metadata:
   namespace: fernando0069-dev
   labels:
     app: wordsearch
-    component: api
+    component: api-secret
 data:
   POSTGRESQL_DATABASE: d29yZHNlYXJjaC1kYg==
   POSTGRESQL_USER: d29yZHNlYXJjaC1kYg==
@@ -62,6 +62,7 @@ data:
 type: Opaque
 ---
 deployment
+
 ---
 service
 ---

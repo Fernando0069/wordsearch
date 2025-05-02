@@ -1,5 +1,5 @@
 # Usar OpenJDK 21 como base
-FROM registry.redhat.io/ubi9/openjdk-21 as builder
+FROM registry.redhat.io/ubi9/openjdk-21:latest as builder
 
 # Instalar Maven en la imagen base
 RUN microdnf update && microdnf install maven
@@ -13,6 +13,19 @@ COPY src /app/src/
 
 # Ejecutar Maven para compilar la aplicación y crear el archivo JAR
 RUN mvn clean package -DskipTests
+
+
+# Usar OpenJDK 21 como base
+FROM registry.redhat.io/ubi9/openjdk-21:latest
+
+# Instalar Maven en la imagen base
+RUN microdnf update
+
+# Establecer el directorio de trabajo
+WORKDIR /app
+
+# Copiar el jar creado
+COPY --from=builder /app/target/wordsearch-api.jar wordsearch-api.jar
 
 # Exponer el puerto por defecto de Spring Boot (8080)
 EXPOSE 8080
