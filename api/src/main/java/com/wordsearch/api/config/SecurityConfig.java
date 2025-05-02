@@ -1,6 +1,6 @@
-package com.wordsearch.config;
+package com.wordsearch.api.config;
 
-import com.wordsearch.security.JwtAuthenticationFilter;
+import com.wordsearch.api.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

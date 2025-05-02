@@ -1,6 +1,6 @@
-package com.wordsearch.repository;
+package com.wordsearch.api.repository;
 
-import com.wordsearch.model.Game;
+import com.wordsearch.api.model.Game;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

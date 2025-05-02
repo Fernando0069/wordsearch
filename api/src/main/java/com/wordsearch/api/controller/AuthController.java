@@ -1,7 +1,7 @@
-package com.wordsearch.controller;
+package com.wordsearch.api.controller;
 
-import com.wordsearch.security.JwtUtil;
-import com.wordsearch.security.MyUserDetailsService;
+import com.wordsearch.api.security.JwtUtil;
+import com.wordsearch.api.security.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.*;

@@ -1,7 +1,7 @@
-package com.wordsearch.controller;
+package com.wordsearch.api.controller;
 
-import com.wordsearch.model.Game;
-import com.wordsearch.service.GameService;
+import com.wordsearch.api.model.Game;
+import com.wordsearch.api.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,7 @@
-package com.wordsearch.service;
+package com.wordsearch.api.service;
 
-import com.wordsearch.model.User;
-import com.wordsearch.repository.UserRepository;
+import com.wordsearch.api.model.User;
+import com.wordsearch.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

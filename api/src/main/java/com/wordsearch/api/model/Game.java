@@ -1,4 +1,4 @@
-package com.wordsearch.model;
+package com.wordsearch.api.model;
 
 import javax.persistence.*;
 import java.util.Date;

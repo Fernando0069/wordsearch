@@ -1,7 +1,7 @@
-package com.wordsearch.controller;
+package com.wordsearch.api.controller;
 
-import com.wordsearch.model.User;
-import com.wordsearch.service.UserService;
+import com.wordsearch.api.model.User;
+import com.wordsearch.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
