@@ -36,32 +36,33 @@ metadata:
   namespace: fernando0069-dev
   labels:
     app: wordsearch
-    component: db
+    component: db-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: wordsearch
-      component: db
-      deployment: wordsearch-db
+      component: db-deployment
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: wordsearch
-        component: db
-        deployment: wordsearch-db
-      annotations:
-        openshift.io/generated-by: OpenShiftNewApp
+        component: db-deployment
     spec:
       volumes:
         - name: wordsearch-db-storage
           persistentVolumeClaim:
             claimName: wordsearch-db-pvc
       containers:
-        - resources: {}
+        - name: postgresql
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1G
+            requests:
+              cpu: 30m
+              memory: 128Mi
           terminationMessagePath: /dev/termination-log
-          name: postgresql
           env:
             - name: POSTGRESQL_ADMIN_PASSWORD
               valueFrom:
@@ -84,14 +85,15 @@ spec:
                   name: wordsearch-db
                   key: POSTGRESQL_USER
           ports:
-            - containerPort: 5432
+            - name: postgresql
+              containerPort: 5432
               protocol: TCP
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           volumeMounts:
             - name: wordsearch-db-storage
               mountPath: /var/lib/postgresql/data
           terminationMessagePolicy: File
-          image: 'image-registry.openshift-image-registry.svc:5000/openshift/postgresql@sha256:8910bd59fcf917fc54f47342939ca3f828560f1881245ed3777ace21e0367963'
+          image: 'image-registry.openshift-image-registry.svc:5000/openshift/postgresql:latest'
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
@@ -112,12 +114,12 @@ metadata:
   namespace: fernando0069-dev
   labels:
     app: wordsearch
-    component: db-srv
+    component: db-service
 spec:
   ipFamilies:
     - IPv4
   ports:
-    - name: 5432-tcp
+    - name: postgresql
       protocol: TCP
       port: 5432
       targetPort: 5432
@@ -127,4 +129,4 @@ spec:
   sessionAffinity: None
   selector:
     app: wordsearch
-    deployment: wordsearch-db
+    component: db-deployment

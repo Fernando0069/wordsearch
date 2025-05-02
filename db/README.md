@@ -50,12 +50,14 @@ oc set env deployment/wordsearch-db --from=secret/wordsearch-db
 oc set volume deployment/wordsearch-db --add --name=wordsearch-db-storage --claim-name=wordsearch-db-pvc --mount-path=/var/lib/postgresql/data
 ```
 
+
+### Objetos
 Al final los dos métodos crean los mismos objetos:
-Se han creado:
- - pvc
- - secret
- - deployment
- - service
+ - PVC
+ - Secret
+ - Deployment
+ - Service
+
 
 ## ERD (Entity Relationship Diagram)
 
@@ -76,7 +78,10 @@ Crea una tabla de notificaciones para almacenar mensajes del sistema.
 
 ¿Cómo lo ejecuto wordsearch.sql?
 ```
-xxxxxxxx
+oc get pods -l app=wordsearch-db
+oc cp ./wordsearch.sql <POD_NAME>:/tmp/
+oc rsh <POD_NAME>
+psql -U wordsearch-db -d wordsearch-db -f /tmp/wordsearch.sql
 ```
 
 

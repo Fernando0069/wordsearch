@@ -18,3 +18,4 @@ PENDIENTE:
         Configuracion de la DB (ejecutar la creacion de tablas "wordsearch.sql").
     API:
         copiar el deployment,service y route
+        application.properties --> ver si podemos meter las credenciales en un secret.
