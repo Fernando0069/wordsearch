@@ -2,9 +2,9 @@
 FROM registry.access.redhat.com/ubi9/ubi-minimal:latest as builder
 
 # Instalar Maven en la imagen base
-#RUN microdnf update
-#RUN dnf update
-RUN microdnf install maven
+RUN microdnf update -y
+RUN microdnf install maven -y 
+RUN microdnf clean all
 
 # Establecer el directorio de trabajo
 WORKDIR /app
