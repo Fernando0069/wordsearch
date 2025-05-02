@@ -26,11 +26,11 @@ RUN microdnf update
 # Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copiar el jar creado
-COPY --from=builder /app/target/wordsearch-api.jar wordsearch-api.jar
+# Copiar el jar creado desde la fase de construcción
+COPY --from=builder /app/target/word-search-api.jar /app/word-search-api.jar
 
 # Exponer el puerto por defecto de Spring Boot (8080)
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación Spring Boot
-CMD ["java", "-jar", "/app/target/wordsearch-api.jar"]
+CMD ["java", "-jar", "/app/word-search-api.jar"]
