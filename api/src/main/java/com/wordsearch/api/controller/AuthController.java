@@ -3,13 +3,16 @@ package com.wordsearch.controller;
 import com.wordsearch.security.JwtUtil;
 import com.wordsearch.security.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
+// Controlador de autenticación
 @RestController
 @RequestMapping("/api/auth") // Ruta de autenticación
 public class AuthController {
@@ -25,7 +28,7 @@ public class AuthController {
 
     // Endpoint para login (autenticación)
     @PostMapping("/login")
-    public Map<String, Object> login(@RequestBody AuthRequest authRequest) {
+    public Map<String, Object> login(@RequestBody @Valid AuthRequest authRequest) {
         try {
             // Autenticación del usuario usando las credenciales
             Authentication authentication = authenticationManager.authenticate(
@@ -34,7 +37,7 @@ public class AuthController {
 
             // Obtener el usuario autenticado
             UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
-            
+
             // Generar el token JWT
             String token = jwtUtil.generateToken(userDetails.getUsername());
 
@@ -53,7 +56,7 @@ public class AuthController {
 
     // Endpoint para registro de nuevo usuario
     @PostMapping("/register")
-    public Map<String, Object> register(@RequestBody AuthRequest authRequest) {
+    public Map<String, Object> register(@RequestBody @Valid AuthRequest authRequest) {
         // Aquí se debe agregar la lógica para registrar al usuario en la base de datos.
         // Para este ejemplo, solo se simula el registro.
 
@@ -71,14 +74,19 @@ public class AuthController {
     }
 
     // DTO para recibir username y password en el login o registro
+    @Validated
     public static class AuthRequest {
+        @NotBlank(message = "Username cannot be blank")
         private String username;
+
+        @NotBlank(message = "Password cannot be blank")
+        @Size(min = 6, message = "Password must be at least 6 characters")
         private String password;
 
         public String getUsername() {
             return username;
         }
-        
+
         public void setUsername(String username) {
             this.username = username;
         }
