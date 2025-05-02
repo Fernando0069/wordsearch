@@ -41,33 +41,18 @@
             <version>42.2.18</version>
         </dependency>
 
-        <!-- H2 Database for testing (Optional) -->
+        <!-- JWT dependency (jjwt) -->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>test</scope>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.11.5</version> <!-- O la última versión disponible -->
         </dependency>
 
-        <!-- Lombok for reducing boilerplate code (Optional) -->
+        <!-- Spring Security JWT (para ayudar con la integración de JWT en Spring Security) -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Spring Boot Test Dependencies (Optional) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Spring Boot DevTools for development -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+            <version>1.1.1</version>
         </dependency>
     </dependencies>
 

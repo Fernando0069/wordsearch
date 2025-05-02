@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
-import 'screens/welcome_screen.dart';
-import 'screens/game_screen.dart';
-import 'screens/profile_screen.dart';
-import 'app_routes.dart';
+import 'screens/splash_screen.dart';
+import 'utils/language_helper.dart';
 
 void main() {
-  runApp(WordSearchApp());
+  runApp(MyApp());
 }
 
-class WordSearchApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // Idioma por defecto es inglés
+  AppLanguage _language = AppLanguage.english;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Word Search',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      title: 'Hangman Game',
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(
+        language: _language,
+        onLanguageChanged: (lang) {
+          setState(() {
+            _language = lang;
+          });
+        },
       ),
-      initialRoute: AppRoutes.welcome,
-      routes: {
-        AppRoutes.welcome: (context) => WelcomeScreen(),
-        AppRoutes.game: (context) => GameScreen(),
-        AppRoutes.profile: (context) => ProfileScreen(),
-      },
     );
   }
 }
