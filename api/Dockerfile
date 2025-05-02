@@ -1,5 +1,5 @@
 # Usar OpenJDK 21 como base
-FROM registry.access.redhat.com/ubi9/ubi-micro:latest as builder
+FROM registry.access.redhat.com/ubi9/openjdk-21:latest as builder
 
 # Instalar Maven en la imagen base
 RUN microdnf update -y
