@@ -1,7 +1,7 @@
 kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
-  name: pacman-nodejs
+  name: wordsearch-api
   namespace: fernando0069-dev
   labels:
     app: wordsearch
@@ -50,7 +50,7 @@ spec:
 kind: Secret
 apiVersion: v1
 metadata:
-  name: api-db
+  name: wordsearch-api-db
   namespace: fernando0069-dev
   labels:
     app: wordsearch

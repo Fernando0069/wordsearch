@@ -2,7 +2,8 @@
 FROM registry.redhat.io/ubi9/openjdk-21:latest as builder
 
 # Instalar Maven en la imagen base
-RUN microdnf update && microdnf install maven
+RUN microdnf update
+RUN microdnf install maven
 
 # Establecer el directorio de trabajo
 WORKDIR /app
