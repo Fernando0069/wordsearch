@@ -23,19 +23,6 @@
         <java.version>17</java.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>central-repo1</id>
-            <url>https://repo1.maven.org/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <dependencies>
         <!-- Spring Boot Dependencies -->
         <dependency>
@@ -90,14 +77,14 @@
 
         <!-- Spring Boot OAuth2 and JWT Dependencies -->
         <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2-jose</artifactId>
-            <version>6.4.3</version>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-oauth2-jose</artifactId>
+        <version>6.4.5</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2-core</artifactId>
-            <version>6.4.4</version>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-oauth2-core</artifactId>
+        <version>6.4.5</version>
         </dependency>
 
         <!-- Javax Persistence API -->
@@ -128,14 +115,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.38</version>
             <optional>true</optional>
-        </dependency>
-
-        <!-- Test (opcional) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <version>3.4.5</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
