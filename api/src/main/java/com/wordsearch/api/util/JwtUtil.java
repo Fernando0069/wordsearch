@@ -1,4 +1,4 @@
-package com.wordsearch.util;
+package com.wordsearch.api.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

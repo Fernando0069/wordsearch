@@ -1,7 +1,7 @@
-package com.wordsearch.security;
+package com.wordsearch.api.security;
 
-import com.wordsearch.util.JwtUtil;
-import com.wordsearch.service.MyUserDetailsService; // Asegúrate de que esta clase está implementada
+import com.wordsearch.api.util.JwtUtil;
+import com.wordsearch.api.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

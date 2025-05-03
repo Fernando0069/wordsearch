@@ -1,4 +1,4 @@
-package com.wordsearch.security;
+package com.wordsearch.api.security;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
-package com.wordsearch.service;
+package com.wordsearch.api.service;
 
-import com.wordsearch.model.Game;
-import com.wordsearch.repository.GameRepository;
+import com.wordsearch.api.model.Game;
+import com.wordsearch.api.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
