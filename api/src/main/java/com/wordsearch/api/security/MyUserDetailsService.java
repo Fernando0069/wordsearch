@@ -1,7 +1,7 @@
-package com.wordsearch.security;
+package com.wordsearch.api.security;
 
-import com.wordsearch.model.User;
-import com.wordsearch.repository.UserRepository;
+import com.wordsearch.api.model.User;
+import com.wordsearch.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
