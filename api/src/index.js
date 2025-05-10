@@ -6,6 +6,11 @@ const routes = require('./routes'); // Esto carga src/routes/index.js
 
 app.use(express.json());
 
+// Rutas principal "/"
+app.get('/', (req, res) => {
+  res.send('API running');
+});
+
 // Rutas agrupadas (por ejemplo, /api/users/register)
 app.use('/api', routes);
 
