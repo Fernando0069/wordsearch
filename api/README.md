@@ -13,15 +13,21 @@ oc new-build --name=wordsearch-api --dockerfile=$(cat Dockerfile)
 api/
 ├── src/
 │   ├── config/
+│   │   └── database.js
 │   ├── controllers/
-│   ├── services/
-│   ├── repositories/
-│   ├── models/
-│   ├── routes/
+│   │   └── UserController.js
 │   ├── middleware/
+│   │   └── authMiddleware.js
+│   ├── models/
+│   │   └── User.js
+│   ├── routes/
+│   │   ├── index.js
+│   │   └── userRoutes.js
 │   └── index.js
 ├── .env
 ├── .gitignore
+├── api.yaml
+├── Dockerfile
 ├── package.json
 └── README.md
 ```
