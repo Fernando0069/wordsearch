@@ -17,10 +17,10 @@ COPY package.json ./
 RUN npm install
 
 # Copia el resto de los archivos
-COPY . .
+COPY ./src ./src
 
 # Limpieza del contenedor
-RUN rm -rf OLD Dockerfile
+#RUN rm -rf OLD Dockerfile
 
 # Expone el puerto (coincide con el de .env)
 EXPOSE 3000
