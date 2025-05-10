@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, interface_language = 'en', words_language = 'en' } = req.body;
 
     // Verifica si el usuario ya existe
     const existingUser = await User.findOne({ where: { email } });
@@ -11,15 +11,23 @@ const register = async (req, res) => {
       return res.status(400).json({ message: 'El email ya está registrado' });
     }
 
-    // Crea nuevo usuario
-    const newUser = await User.create({ username, email, password });
+    // Crea nuevo usuario con idiomas
+    const newUser = await User.create({
+      username,
+      email,
+      password,
+      interface_language,
+      words_language
+    });
 
     return res.status(201).json({
       message: 'Usuario creado correctamente',
       user: {
         id: newUser.id,
         username: newUser.username,
-        email: newUser.email
+        email: newUser.email,
+        interface_language: newUser.interface_language,
+        words_language: newUser.words_language
       }
     });
   } catch (error) {
@@ -51,14 +59,41 @@ const login = async (req, res) => {
       { expiresIn: '24h' }
     );
 
-    return res.json({ token });
+    return res.json({
+      token,
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        interface_language: user.interface_language,
+        words_language: user.words_language
+      }
+    });
   } catch (error) {
     console.error('Error en el login:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
 
+const getProfile = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.userId, {
+      attributes: ['id', 'username', 'email', 'interface_language', 'words_language']
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error('Error al obtener perfil:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+};
+
 module.exports = {
   register,
-  login
+  login,
+  getProfile
 };

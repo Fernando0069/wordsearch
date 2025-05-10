@@ -21,6 +21,16 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    interface_language: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'en' // por si no lo manda el frontend
+    },
+    words_language: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'en'
     }
   }, {
     hooks: {

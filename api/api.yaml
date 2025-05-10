@@ -56,14 +56,114 @@ metadata:
     app: wordsearch
     component: api-secret
 data:
-  POSTGRESQL_DATABASE: d29yZHNlYXJjaC1kYg==
-  POSTGRESQL_USER: d29yZHNlYXJjaC1kYg==
-  POSTGRESQL_PASSWORD: YmQtaGNyNDNzZHIwVw==
+    POSTGRESQL_HOST: d29yZHNlYXJjaC1kYg==
+    POSTGRESQL_DATABASE: d29yZHNlYXJjaC1kYg==
+    POSTGRESQL_USER: d29yZHNlYXJjaC1kYg==
+    POSTGRESQL_PASSWORD: YmQtaGNyNDNzZHIwVw==
 type: Opaque
 ---
-deployment
-
+kind: Secret
+apiVersion: v1
+metadata:
+  name: wordsearch-api-jwt
+  namespace: fernando0069-dev
+  labels:
+    app: wordsearch
+    component: api-secret
+data:
+  JWT: Y2xhdmVfc3VwZXJfc2VndXJhX0pXVA==
+type: Opaque
 ---
-service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordsearch-api
+  namespace: fernando0069-dev
+  labels:
+    app: wordsearch
+    component: api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordsearch
+      component: api-deployment
+  template:
+    metadata:
+      labels:
+        app: wordsearch
+        component: api-deployment
+    spec:
+      containers:
+        - name: wordsearch-api
+          image: image-registry.openshift-image-registry.svc:5000/fernando0069-dev/wordsearch-api:latest
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              cpu: 1
+              memory: 512M
+            requests:
+              cpu: 50m
+              memory: 128M
+          env:
+            - name: JWT
+              valueFrom:
+                secretKeyRef:
+                  name: wordsearch-api-jwt
+                  key: JWT
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: wordsearch-api-db
+                  key: POSTGRESQL_HOST
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: wordsearch-api-db
+                  key: POSTGRESQL_DATABASE
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: wordsearch-api-db
+                  key: POSTGRESQL_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: wordsearch-api-db
+                  key: POSTGRESQL_PASSWORD
 ---
-route
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordsearch-api
+  namespace: fernando0069-dev
+  labels:
+    app: wordsearch
+    component: api-service
+spec:
+  selector:
+    app: wordsearch
+    component: api-deployment
+  ports:
+    - protocol: TCP
+      port: 8880
+      targetPort: 3000
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: wordsearch-api
+  namespace: fernando0069-dev
+  labels:
+    app: wordsearch
+    component: api-route
+spec:
+  to:
+    kind: Service
+    name: wordsearch-api
+  port:
+    targetPort: 8880
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
