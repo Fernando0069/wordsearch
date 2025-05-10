@@ -10,13 +10,13 @@ USER node
 WORKDIR /app
 
 # Copia el archivo de configuración primero para aprovechar la cache
-COPY --chown=node:node package.json ./
+COPY package.json ./
 
 # Instala dependencias
 RUN npm install
 
 # Copia el resto de los archivos
-COPY --chown=node:node . .
+COPY . .
 
 # Expone el puerto (coincide con el de .env)
 EXPOSE 3000
